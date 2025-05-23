@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create axios instance with base URL
 const api = axios.create({
-  baseURL: "http://localhost:8000/api", // Django backend URL
+  baseURL: "https://opulent-goggles-979xwvx9xp7w3pqpv-8000.app.github.dev/api", // Django backend URL
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",

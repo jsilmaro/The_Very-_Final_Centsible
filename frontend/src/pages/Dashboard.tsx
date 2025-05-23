@@ -61,7 +61,7 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/dashboard/summary/', {
+      const response = await fetch('https://opulent-goggles-979xwvx9xp7w3pqpv-8000.app.github.dev/api/dashboard/summary/', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

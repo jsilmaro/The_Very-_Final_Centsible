@@ -2,18 +2,15 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, name, password=None):
+    def create_user(self, email, name, password=None, **extra_fields):
         if not email:
             raise ValueError("Email is required")
-        email = self.normalize_email(email)
-        user = self.model(email=email, name=name)
-       
-        if password:
-            user.set_password(password)  #Hash pass properly
-
-        else:
+        if not password:
             raise ValueError("Password is required")
 
+        email = self.normalize_email(email)
+        user = self.model(email=email, name=name, **extra_fields)
+        user.set_password(password)
         user.save(using=self._db)
         return user
 
@@ -27,14 +24,18 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError("Superuser must have is_superuser=True.")
 
-        return self.create_user(email, password, **extra_fields)
+        name = extra_fields.pop("name", None)
+        if not name:
+            raise ValueError("Superuser must have a name.")
+
+        return self.create_user(email, name, password, **extra_fields)
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=150)
-    avatar = models.ImageField(upload_to="avatars/", null=True, blank=True)  # Aligning with frontend expectations
-    preferences = models.JSONField(default=dict, blank=True)  # Storing user preferences
-    
+    avatar = models.ImageField(upload_to="avatars/", null=True, blank=True)
+    preferences = models.JSONField(default=dict, blank=True)
+
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 

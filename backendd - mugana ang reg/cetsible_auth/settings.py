@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,7 +56,6 @@ REST_FRAMEWORK = {
 }
 
 
-from datetime import timedelta
 
 
 SIMPLE_JWT = {
@@ -75,16 +76,26 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True  # Temporarily allow all origins
-CORS_ALLOW_ORIGINS = [
-  "http://localhost:8080",
-  "http://localhost:8000"
-  
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://the-very-final-centsible.vercel.app",
+    "https://the-very-final-centsible-h7hz.vercel.app",
+    "https://opulent-goggles-979xwvx9xp7w3pqpv-8000.app.github.dev",
+    "https://opulent-goggles-979xwvx9xp7w3pqpv-8081.app.github.dev",
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-requested-with',
+    'Access-Control-Allow-Origin',
+    "content-disposition",
+    "accept",
+    "content-disposition",
+]
 
 
 ROOT_URLCONF = 'cetsible_auth.urls'
@@ -115,13 +126,18 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'centsible_dbb',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': 'Centsible2_db',
+        'USER': 'Centsible2_db_owner',
+        'PASSWORD': 'npg_3VNyCMgkUit6',
+        'HOST': 'ep-lively-rain-a51xi5b6-pooler.us-east-2.aws.neon.tech',
+        'PORT': '5432',  # default PostgreSQL port, change if different
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
+
+
 
 
 # Password validation
@@ -158,14 +174,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5000",
-]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -173,3 +182,5 @@ CORS_ALLOW_CREDENTIALS = True
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_URL = '/static/'

@@ -87,7 +87,7 @@ const Transactions = () => {
 
   const fetchTransactions = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/transactions/', {
+      const response = await fetch('https://the-very-final-centsible-h7hz.vercel.app/api/transactions/', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -159,7 +159,7 @@ const Transactions = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:8000/api/transactions/', {
+      const response = await fetch('https://opulent-goggles-979xwvx9xp7w3pqpv-8000.app.github.dev/api/transactions/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
