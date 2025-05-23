@@ -2,15 +2,24 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 class CustomUserManager(BaseUserManager):
+<<<<<<< HEAD
     def create_user(self, email, name, password=None, **extra_fields):
+=======
+    def create_user(self, email, password=None, **extra_fields):
+>>>>>>> a4b65654 (links)
         if not email:
             raise ValueError("Email is required")
         if not password:
             raise ValueError("Password is required")
 
         email = self.normalize_email(email)
+<<<<<<< HEAD
         user = self.model(email=email, name=name, **extra_fields)
         user.set_password(password)
+=======
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)  # Hash password properly
+>>>>>>> a4b65654 (links)
         user.save(using=self._db)
         return user
 

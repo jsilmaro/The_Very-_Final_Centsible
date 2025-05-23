@@ -78,12 +78,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+<<<<<<< HEAD
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "https://the-very-final-centsible.vercel.app",
     "https://the-very-final-centsible-h7hz.vercel.app",
     "https://opulent-goggles-979xwvx9xp7w3pqpv-8000.app.github.dev",
     "https://opulent-goggles-979xwvx9xp7w3pqpv-8081.app.github.dev",
+=======
+CORS_ALLOW_ALL_ORIGINS = True  # Temporarily allow all origins
+CORS_ALLOW_ORIGINS = [
+  "https://the-very-final-centsible.vercel.app",
+  
+>>>>>>> a4b65654 (links)
 ]
 CORS_ALLOW_CREDENTIALS = True
 
@@ -126,11 +133,19 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+<<<<<<< HEAD
         'NAME': 'Centsible2_db',
         'USER': 'Centsible2_db_owner',
         'PASSWORD': 'npg_3VNyCMgkUit6',
         'HOST': 'ep-lively-rain-a51xi5b6-pooler.us-east-2.aws.neon.tech',
         'PORT': '5432',  # default PostgreSQL port, change if different
+=======
+        'NAME': 'Centsible_db',
+        'USER': 'Centsible_db_owner',
+        'PASSWORD': 'npg_Z9BSnxI8KHhy',
+        'HOST': 'ep-blue-heart-abg1gc7j-pooler.eu-west-2.aws.neon.tech',
+        'PORT': '5432',
+>>>>>>> a4b65654 (links)
         'OPTIONS': {
             'sslmode': 'require',
         },
@@ -175,6 +190,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 
+<<<<<<< HEAD
+=======
+CORS_ALLOWED_ORIGINS = [
+    "https://the-very-final-centsible.vercel.app"
+]
+>>>>>>> a4b65654 (links)
 
 CORS_ALLOW_CREDENTIALS = True
 
